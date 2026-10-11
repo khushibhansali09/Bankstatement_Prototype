@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+output/
+models/*.json
+models/*.joblib
+samples/*.pdf
+.pytest_cache/
+.vscode/
+.DS_Store

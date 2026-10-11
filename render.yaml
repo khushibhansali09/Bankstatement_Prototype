@@ -1,0 +1,12 @@
+# Render blueprint. Push this repo to GitHub, then on Render choose
+# New, Blueprint, and point it at the repo. Render reads this file.
+services:
+  - type: web
+    name: bank-statement-processor
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12"

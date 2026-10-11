@@ -1,0 +1,33 @@
+# ---------------------------------------------------------------------------
+# NOTHING HERE IS REQUIRED.
+#
+# The prototype runs on a clean Python 3.10+ install with the standard library
+# alone. Every package below makes one part better or faster, and the code
+# detects what is present at startup. Run `python run.py doctor` to see.
+#
+# This matters on Python 3.15, which only shipped on 1 October 2026. Some of
+# these may not have a 3.15 wheel yet. Install what works, skip what does not.
+# ---------------------------------------------------------------------------
+
+# --- better PDF text extraction (strongly recommended) ---------------------
+pdfplumber>=0.11.0        # real glyph positions, much better column accuracy
+pypdf>=5.0.0              # lighter fallback reader
+
+# --- formatted Excel output (recommended) ----------------------------------
+openpyxl>=3.1.0           # without it a plainer .xlsx is still written
+
+# --- OCR for scanned statements --------------------------------------------
+# These also need the Tesseract PROGRAM installed on the machine. See the guide.
+pytesseract>=0.3.13
+pillow>=10.0.0
+pymupdf>=1.24.0           # page rendering; alternative: pdf2image + poppler
+
+# --- machine learning (optional, there is a built-in classifier) -----------
+scikit-learn>=1.5.0
+joblib>=1.4.0
+
+# --- browser interface (optional) ------------------------------------------
+streamlit>=1.37.0
+
+# --- tests (development only) ----------------------------------------------
+pytest>=8.0.0

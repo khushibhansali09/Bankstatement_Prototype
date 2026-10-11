@@ -1,0 +1,53 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Doctor (check the install)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["doctor"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Create sample statements",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["samples"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Train the classifier",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["train"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Process a sample statement",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["process", "samples/sample_1_text_simple.pdf", "-v"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Process a PDF you pick",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/run.py",
+      "args": ["process", "${input:pdfPath}", "-v"],
+      "console": "integratedTerminal"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "pdfPath",
+      "type": "promptString",
+      "description": "Path to the PDF statement",
+      "default": "samples/sample_1_text_simple.pdf"
+    }
+  ]
+}

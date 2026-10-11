@@ -1,0 +1,125 @@
+{
+  "version": "1.3.0",
+  "notes": "Edit freely. Higher priority wins. Patterns are case-insensitive regular expressions matched against the NORMALISED narration (lower case, reference numbers stripped). Run 'python run.py rules --test' after editing.",
+  "rules": [
+    { "id": "income-salary", "category": "Salary", "priority": 95, "direction": "CR", "confidence": 0.96,
+      "any": ["\\bsalary\\b", "\\bsal cr\\b", "\\bpayroll\\b", "\\bmonthly sal\\b", "\\bwages\\b", "\\bremuneration\\b", "\\bstipend\\b"] },
+
+    { "id": "income-interest", "category": "Interest Income", "priority": 94, "direction": "CR", "confidence": 0.95,
+      "any": ["\\binterest (credit|paid|earned)\\b", "\\bint\\.? cr\\b", "\\bsb int\\b", "\\bfd interest\\b", "\\bsavings interest\\b", "\\bquarterly interest\\b"] },
+
+    { "id": "income-dividend", "category": "Investment Income", "subcategory": "Dividend", "priority": 94, "direction": "CR", "confidence": 0.94,
+      "any": ["\\bdividend\\b", "\\bdiv payout\\b", "\\binterim dividend\\b"] },
+
+    { "id": "income-maturity", "category": "Investment Income", "subcategory": "Maturity", "priority": 93, "direction": "CR", "confidence": 0.92,
+      "any": ["\\bfd maturity\\b", "\\bmaturity proceeds\\b", "\\brd maturity\\b", "\\bterm deposit closure\\b", "\\bredemption\\b"] },
+
+    { "id": "income-refund", "category": "Refund / Reversal", "priority": 93, "direction": "CR", "confidence": 0.93,
+      "any": ["\\brefund\\b", "\\breversal\\b", "\\breversed\\b", "\\bchargeback\\b", "\\bfailed transaction credit\\b", "\\bcancellation credit\\b"] },
+
+    { "id": "income-tax-refund", "category": "Refund / Reversal", "subcategory": "Income tax refund", "priority": 96, "direction": "CR", "confidence": 0.96,
+      "any": ["\\bincome tax refund\\b", "\\bitr refund\\b", "\\bcbdt refund\\b", "\\brefund cpc\\b"] },
+
+    { "id": "income-cash-deposit", "category": "Cash Deposit", "priority": 90, "direction": "CR", "confidence": 0.93,
+      "any": ["\\bcash deposit\\b", "\\bby cash\\b", "\\bcdm\\b", "\\bcash dep\\b", "\\bself cash\\b", "\\bbranch cash\\b"] },
+
+    { "id": "income-loan-disbursal", "category": "Loan Disbursal", "priority": 92, "direction": "CR", "confidence": 0.9,
+      "any": ["\\bloan disburs", "\\bdisbursement\\b", "\\bloan credit\\b", "\\bod limit credit\\b"] },
+
+    { "id": "income-business-receipt", "category": "Business Receipts", "priority": 70, "direction": "CR", "confidence": 0.78,
+      "any": ["\\binvoice\\b", "\\bbill payment received\\b", "\\bsettlement\\b", "\\bpayout\\b", "\\bmerchant settlement\\b", "\\brazorpay\\b", "\\bpaytm settlement\\b", "\\bstripe\\b", "\\bpayu\\b"] },
+
+    { "id": "expense-rent", "category": "Rent", "priority": 92, "direction": "DR", "confidence": 0.94,
+      "any": ["\\brent\\b", "\\bhouse rent\\b", "\\blease rent\\b", "\\boffice rent\\b", "\\bmaintenance society\\b", "\\bsociety maintenance\\b", "\\bnobroker\\b"] },
+
+    { "id": "expense-electricity", "category": "Utilities", "subcategory": "Electricity", "priority": 91, "direction": "DR", "confidence": 0.95,
+      "any": ["\\belectricity\\b", "\\bpower bill\\b", "\\bmseb\\b", "\\bbses\\b", "\\btata power\\b", "\\badani electricity\\b", "\\btorrent power\\b", "\\bmsedcl\\b", "\\bbescom\\b", "\\bkseb\\b", "\\btneb\\b", "\\bjvvnl\\b", "\\bdiscom\\b"] },
+
+    { "id": "expense-water-gas", "category": "Utilities", "subcategory": "Water and gas", "priority": 91, "direction": "DR", "confidence": 0.93,
+      "any": ["\\bwater bill\\b", "\\bgas bill\\b", "\\bindane\\b", "\\bhp gas\\b", "\\bbharat gas\\b", "\\bmahanagar gas\\b", "\\bigl\\b", "\\bgujarat gas\\b", "\\bjal board\\b", "\\bmunicipal water\\b"] },
+
+    { "id": "expense-telecom", "category": "Telecom & Internet", "priority": 91, "direction": "DR", "confidence": 0.94,
+      "any": ["\\bairtel\\b", "\\bjio\\b", "\\bvodafone\\b", "\\bvi recharge\\b", "\\bbsnl\\b", "\\bmtnl\\b", "\\bmobile recharge\\b", "\\bbroadband\\b", "\\bact fibernet\\b", "\\bhathway\\b", "\\bexcitel\\b", "\\btata play\\b", "\\bdish tv\\b", "\\bpostpaid bill\\b", "\\bprepaid recharge\\b"] },
+
+    { "id": "expense-groceries", "category": "Groceries", "priority": 90, "direction": "DR", "confidence": 0.93,
+      "any": ["\\bbigbasket\\b", "\\bblinkit\\b", "\\bzepto\\b", "\\binstamart\\b", "\\bdmart\\b", "\\bd mart\\b", "\\breliance fresh\\b", "\\bmore retail\\b", "\\bspencer\\b", "\\bkirana\\b", "\\bgrocery\\b", "\\bsupermarket\\b", "\\bjiomart\\b", "\\bnature basket\\b"] },
+
+    { "id": "expense-food", "category": "Food & Dining", "priority": 90, "direction": "DR", "confidence": 0.94,
+      "any": ["\\bswiggy\\b", "\\bzomato\\b", "\\bdominos\\b", "\\bpizza hut\\b", "\\bmcdonald\\b", "\\bkfc\\b", "\\bburger king\\b", "\\bstarbucks\\b", "\\bcafe coffee day\\b", "\\bccd\\b", "\\bchaayos\\b", "\\bbarbeque nation\\b", "\\brestaurant\\b", "\\bbakery\\b", "\\bdineout\\b", "\\beatclub\\b", "\\bbiryani\\b", "\\bfood court\\b", "\\bcanteen\\b"] },
+
+    { "id": "expense-shopping", "category": "Shopping", "priority": 88, "direction": "DR", "confidence": 0.92,
+      "any": ["\\bamazon\\b", "\\bflipkart\\b", "\\bmyntra\\b", "\\bajio\\b", "\\bmeesho\\b", "\\bnykaa\\b", "\\bsnapdeal\\b", "\\btatacliq\\b", "\\bdecathlon\\b", "\\bikea\\b", "\\bcroma\\b", "\\breliance digital\\b", "\\bshoppers stop\\b", "\\blifestyle\\b", "\\bpantaloons\\b", "\\bzara\\b", "\\bh and m\\b", "\\bwestside\\b"] },
+
+    { "id": "expense-fuel", "category": "Fuel", "priority": 91, "direction": "DR", "confidence": 0.94,
+      "any": ["\\bpetrol\\b", "\\bdiesel\\b", "\\bfuel\\b", "\\bindian oil\\b", "\\biocl\\b", "\\bbharat petroleum\\b", "\\bbpcl\\b", "\\bhindustan petroleum\\b", "\\bhpcl\\b", "\\bshell\\b", "\\bnayara\\b", "\\bfilling station\\b", "\\bpetrol pump\\b"] },
+
+    { "id": "expense-travel", "category": "Travel & Transport", "priority": 89, "direction": "DR", "confidence": 0.93,
+      "any": ["\\buber\\b", "\\bola\\b", "\\brapido\\b", "\\birctc\\b", "\\bindigo\\b", "\\bair india\\b", "\\bspicejet\\b", "\\bvistara\\b", "\\bakasa\\b", "\\bmakemytrip\\b", "\\bgoibibo\\b", "\\bcleartrip\\b", "\\byatra\\b", "\\bredbus\\b", "\\boyo\\b", "\\bairbnb\\b", "\\bfastag\\b", "\\btoll\\b", "\\bmetro recharge\\b", "\\bparking\\b", "\\bbooking com\\b"] },
+
+    { "id": "expense-healthcare", "category": "Healthcare", "priority": 90, "direction": "DR", "confidence": 0.93,
+      "any": ["\\bapollo\\b", "\\bpharmeasy\\b", "\\b1mg\\b", "\\bnetmeds\\b", "\\bmedplus\\b", "\\bhospital\\b", "\\bclinic\\b", "\\bpharmacy\\b", "\\bdiagnostic\\b", "\\bpathlab\\b", "\\bdr lal\\b", "\\bmetropolis\\b", "\\bthyrocare\\b", "\\bmedical store\\b", "\\bpracto\\b"] },
+
+    { "id": "expense-education", "category": "Education", "priority": 90, "direction": "DR", "confidence": 0.92,
+      "any": ["\\bschool fee\\b", "\\bcollege fee\\b", "\\btuition\\b", "\\buniversity\\b", "\\bbyju\\b", "\\bunacademy\\b", "\\bvedantu\\b", "\\bcoursera\\b", "\\budemy\\b", "\\bupgrad\\b", "\\bexam fee\\b", "\\badmission fee\\b", "\\bhostel fee\\b", "\\bacademy\\b"] },
+
+    { "id": "expense-entertainment", "category": "Entertainment & Subscriptions", "priority": 89, "direction": "DR", "confidence": 0.93,
+      "any": ["\\bnetflix\\b", "\\bprime video\\b", "\\bhotstar\\b", "\\bdisney\\b", "\\bspotify\\b", "\\bsony liv\\b", "\\bzee5\\b", "\\bjiocinema\\b", "\\byoutube premium\\b", "\\bbookmyshow\\b", "\\bpvr\\b", "\\binox\\b", "\\bgaming\\b", "\\bsteam games\\b", "\\bapple com bill\\b", "\\bgoogle play\\b", "\\bsubscription\\b"] },
+
+    { "id": "expense-insurance", "category": "Insurance", "priority": 91, "direction": "DR", "confidence": 0.94,
+      "any": ["\\binsurance\\b", "\\bpremium\\b", "\\blic\\b", "\\bhdfc life\\b", "\\bicici pru\\b", "\\bsbi life\\b", "\\bmax life\\b", "\\bbajaj allianz\\b", "\\bstar health\\b", "\\bniva bupa\\b", "\\btata aig\\b", "\\bpolicybazaar\\b", "\\bmediclaim\\b"] },
+
+    { "id": "expense-investment-mf", "category": "Investments", "subcategory": "Mutual fund", "priority": 92, "direction": "DR", "confidence": 0.94,
+      "any": ["\\bmutual fund\\b", "\\bsip\\b", "\\bbse star mf\\b", "\\bnse mf\\b", "\\bcams\\b", "\\bkfintech\\b", "\\bkarvy\\b", "\\bgroww\\b", "\\bzerodha\\b", "\\bcoin zerodha\\b", "\\bkuvera\\b", "\\bpaytm money\\b", "\\bindmoney\\b", "\\betmoney\\b", "\\bmf purchase\\b"] },
+
+    { "id": "expense-investment-equity", "category": "Investments", "subcategory": "Equity and deposits", "priority": 91, "direction": "DR", "confidence": 0.92,
+      "any": ["\\bupstox\\b", "\\bangel one\\b", "\\bicici direct\\b", "\\bhdfc sec\\b", "\\bkotak sec\\b", "\\b5paisa\\b", "\\bdemat\\b", "\\bfixed deposit\\b", "\\bfd creation\\b", "\\brecurring deposit\\b", "\\brd instal", "\\bppf\\b", "\\bnps\\b", "\\bsukanya\\b"] },
+
+    { "id": "expense-loan-emi", "category": "Loan Repayment", "priority": 93, "direction": "DR", "confidence": 0.94,
+      "any": ["\\bemi\\b", "\\bemi loan\\b", "\\bloan repayment\\b", "\\bloan instal", "\\bhome loan\\b", "\\bcar loan\\b", "\\bpersonal loan\\b", "\\bauto loan\\b", "\\bbajaj finance\\b", "\\bbajaj finserv\\b", "\\bhdb financial\\b", "\\btata capital\\b", "\\bprincipal recovery\\b"] },
+
+    { "id": "expense-credit-card", "category": "Credit Card Payment", "priority": 93, "direction": "DR", "confidence": 0.94,
+      "any": ["\\bcredit card payment\\b", "\\bcc payment\\b", "\\bcard bill\\b", "\\bautopay cc\\b", "\\bcard payment to\\b", "\\bbillpay credit card\\b", "\\bcc bill\\b"] },
+
+    { "id": "expense-tax", "category": "Taxes", "priority": 94, "direction": "DR", "confidence": 0.95,
+      "any": ["\\bgst tax\\b", "\\btds tax\\b", "\\bincome tax\\b", "\\badvance tax\\b", "\\bself assessment tax\\b", "\\bprofession tax\\b", "\\bproperty tax\\b", "\\bcbdt\\b", "\\bgstn\\b", "\\bchallan\\b", "\\btcs tax\\b"] },
+
+    { "id": "expense-bank-charges", "category": "Bank Charges & Fees", "priority": 94, "direction": "DR", "confidence": 0.95,
+      "any": ["\\bcharges\\b", "\\bservice charge\\b", "\\bamb charge\\b", "\\bmin bal\\b", "\\bnon maintenance\\b", "\\bsms charge\\b", "\\bannual fee\\b", "\\batm decline\\b", "\\bcheque return charge\\b", "\\bpenalty\\b", "\\bgst on charge\\b", "\\bprocessing fee\\b", "\\blocker rent\\b", "\\bdebit card fee\\b", "\\becs return\\b"] },
+
+    { "id": "expense-cash-withdrawal", "category": "Cash Withdrawal", "priority": 92, "direction": "DR", "confidence": 0.95,
+      "any": ["\\bcash withdrawal\\b", "\\batm wdl\\b", "\\batm cash\\b", "\\bnfs cash\\b", "\\bself withdrawal\\b", "\\bcash chq\\b"] },
+
+    { "id": "expense-cash-withdrawal-atm", "category": "Cash Withdrawal", "priority": 75, "direction": "DR", "channel": "ATM", "confidence": 0.9,
+      "any": ["\\batm\\b", "\\bnfs\\b"] },
+
+    { "id": "expense-donation", "category": "Donation", "priority": 88, "direction": "DR", "confidence": 0.9,
+      "any": ["\\bdonation\\b", "\\bcharity\\b", "\\bngo\\b", "\\btemple\\b", "\\btrust fund\\b", "\\bpm cares\\b", "\\bgoonj\\b", "\\bcry india\\b"] },
+
+    { "id": "expense-business", "category": "Business Expense", "priority": 70, "direction": "DR", "confidence": 0.8,
+      "any": ["\\bvendor payment\\b", "\\bsupplier\\b", "\\bcontractor\\b", "\\bfreight\\b", "\\blogistics\\b", "\\bcourier\\b", "\\bbluedart\\b", "\\bdelhivery\\b", "\\boffice supplies\\b", "\\bprofessional fee\\b", "\\bconsultancy\\b", "\\baws amazon web\\b", "\\bgoogle cloud\\b", "\\bazure\\b"] },
+
+    { "id": "self-transfer", "category": "Self Transfer", "priority": 86, "confidence": 0.88,
+      "any": ["\\bself\\b", "\\bown account\\b", "\\bself transfer\\b", "\\bbetween own accounts\\b", "\\bto self ac\\b"] },
+
+    { "id": "transfer-in-upi", "category": "Transfer In", "priority": 40, "direction": "CR", "channel": "UPI", "confidence": 0.72,
+      "any": ["\\bupi\\b"] },
+
+    { "id": "transfer-in-neft", "category": "Transfer In", "priority": 40, "direction": "CR", "confidence": 0.74,
+      "any": ["\\bneft\\b", "\\brtgs\\b", "\\bimps\\b", "\\binward remittance\\b", "\\bfunds received\\b"] },
+
+    { "id": "transfer-in-cheque", "category": "Transfer In", "subcategory": "Cheque", "priority": 60, "direction": "CR", "confidence": 0.8,
+      "any": ["\\bcheque deposit\\b", "\\bclg\\b", "\\binward cheque\\b", "\\bchq deposit\\b"] },
+
+    { "id": "transfer-out-upi", "category": "Transfer Out", "priority": 38, "direction": "DR", "channel": "UPI", "confidence": 0.7,
+      "any": ["\\bupi\\b"] },
+
+    { "id": "transfer-out-neft", "category": "Transfer Out", "priority": 38, "direction": "DR", "confidence": 0.72,
+      "any": ["\\bneft\\b", "\\brtgs\\b", "\\bimps\\b", "\\boutward remittance\\b", "\\bfund transfer\\b"] },
+
+    { "id": "transfer-out-cheque", "category": "Transfer Out", "subcategory": "Cheque", "priority": 58, "direction": "DR", "confidence": 0.8,
+      "any": ["\\bcheque\\b", "\\bchq\\b", "\\boutward chq\\b", "\\bclearing\\b"] },
+
+    { "id": "transfer-out-pos", "category": "Shopping", "subcategory": "Card spend", "priority": 35, "direction": "DR", "channel": "POS", "confidence": 0.62,
+      "any": ["\\bpos\\b", "\\bcard purchase\\b", "\\becom\\b"] }
+  ]
+}
